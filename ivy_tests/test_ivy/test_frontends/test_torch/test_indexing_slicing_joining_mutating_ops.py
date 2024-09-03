@@ -1,5 +1,4 @@
 # global
-import random
 
 from hypothesis import strategies as st
 import math
@@ -17,6 +16,7 @@ from ivy_tests.test_ivy.test_functional.test_core.test_searching import (
 from ivy_tests.test_ivy.test_functional.test_core.test_manipulation import (  # noqa
     _get_splits,
 )
+import secrets
 
 
 # --- Helpers --- #
@@ -224,7 +224,7 @@ def _chunk_helper(draw):
 # diagonal_scatter
 @st.composite
 def _diag_x_y_offset_axes(draw):
-    currentshape = random.randint(2, 4)
+    currentshape = secrets.SystemRandom().randint(2, 4)
 
     if test_globals.CURRENT_BACKEND == "paddle":
         currentshape = 2
