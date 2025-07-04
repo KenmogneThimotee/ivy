@@ -6,12 +6,13 @@ import requests
 import json
 import old_run_test_helpers as old_helpers
 from run_tests_CLI.get_all_tests import BACKENDS
+from security import safe_requests
 
 
 def get_latest_package_version(package_name):
     try:
         url = f"https://pypi.org/pypi/{package_name}/json"
-        response = requests.get(url)
+        response = safe_requests.get(url)
         response.raise_for_status()
         package_info = response.json()
         return package_info["info"]["version"]
